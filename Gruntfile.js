@@ -3,6 +3,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    // JSHint config
     jshint: {
       options: {
         curly: true,
@@ -16,6 +17,7 @@ module.exports = function (grunt) {
       all: ['Gruntfile.js', 'js/scripts.js']
     },
     
+    // Uglify config
     uglify: {
       build: {
         src: 'js/scripts.js',
@@ -23,7 +25,23 @@ module.exports = function (grunt) {
       }
     },
 
+    // SASS config
+    sass: {
+      dist: {
+        options: {
+          style: 'expanded'
+        },
+        files: {
+          'css/styles.css' : 'scss/styles.scss'
+        }
+      }
+    },
+
+    // Watch config
     watch: {
+      options: {
+        livereload: true
+      },
       html: {
         files: ['*.html'],
         tasks: []
@@ -32,19 +50,19 @@ module.exports = function (grunt) {
         files: ['js/script.js', 'Gruntfile.js'],
         tasks: ['jshint', 'uglify']
       },
-      options: {
-        livereload: true
+      sass: {
+        files: ['scss/styles.scss'],
+        tasks: ['sass']
       }
     }
   });
 
-  // Load the jshint plugin
+  // Load plugins
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  // Load the uglify plugin
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  // Load the watch plugin
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-sass');
 
   // Set up our default task
-  grunt.registerTask('default', ['jshint', 'uglify', 'watch']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'sass', 'watch']);
 };
