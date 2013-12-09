@@ -21,6 +21,13 @@ module.exports = function (grunt) {
         src: 'js/scripts.js',
         dest: 'js/scripts.min.js'
       }
+    },
+
+    watch: {
+      js: { 
+        files: ['js/**/*'],
+        tasks: ['jshint', 'uglify']
+      }
     }
   });
 
@@ -28,7 +35,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   // Load the uglify plugin
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  // Load the watch plugin
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Set up our default task
-  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'watch']);
 };
