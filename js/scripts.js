@@ -2,5 +2,5 @@
 
 	"use strict";
 
-	console.log('Grunt! Minified!');
+	console.log('Grunt!');
 })();
