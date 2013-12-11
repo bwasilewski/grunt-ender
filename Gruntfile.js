@@ -40,7 +40,9 @@ module.exports = function (grunt) {
     // Watch config
     watch: {
       options: {
-        livereload: true
+        livereload: {
+          port: 9000
+        }
       },
       html: {
         files: ['*.html'],
