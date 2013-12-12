@@ -377,3 +377,6 @@ table {
 }
 
 /* Styles go here */
+body {
+  overflow: hidden;
+}

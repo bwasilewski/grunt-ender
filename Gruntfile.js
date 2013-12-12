@@ -14,7 +14,9 @@ module.exports = function (grunt) {
           jQuery: true
         }
       },
-      all: ['Gruntfile.js', 'js/scripts.js']
+      build: {
+        src: ['Gruntfile.js', 'js/scripts.js']
+      }
     },
     
     // Uglify config
@@ -31,9 +33,8 @@ module.exports = function (grunt) {
         options: {
           style: 'expanded'
         },
-        files: {
-          'css/styles.css' : 'scss/styles.scss'
-        }
+        src: 'scss/styles.scss',
+        dest: 'css/styles.css'
       }
     },
 
@@ -44,16 +45,16 @@ module.exports = function (grunt) {
           port: 9000
         }
       },
-      html: {
-        files: ['*.html'],
-        tasks: []
+      jshint: { 
+        files: '<%= jshint.build.src %>',
+        tasks: ['jshint']
       },
-      js: { 
-        files: ['js/script.js', 'Gruntfile.js'],
-        tasks: ['jshint', 'uglify']
+      uglify: {
+        files: '<%= uglify.build.src %>',
+        tasks: ['uglify']
       },
       sass: {
-        files: ['scss/styles.scss'],
+        files: '<%= sass.dist.src %>',
         tasks: ['sass']
       }
     }
