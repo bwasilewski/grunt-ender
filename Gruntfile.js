@@ -41,9 +41,7 @@ module.exports = function (grunt) {
     // Watch config
     watch: {
       options: {
-        livereload: {
-          port: 9000
-        }
+        livereload: true
       },
       jshint: { 
         files: '<%= jshint.build.src %>',
